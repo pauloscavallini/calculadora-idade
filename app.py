@@ -17,9 +17,9 @@ def index():
 def calcular_idade():
     try:
         data = validarData(int(request.form.get('data')))
-        resultado = (agora - data)
-        print(resultado)
-        return render_template('index.html', resultado=f'{resultado} ano{'s' if resultado != 1 else ''} de idade')
+        resultado = agora - data
+        sufixo = 's' if resultado != 1 else ''
+        return render_template('index.html', resultado="{} ano{} de idade".format(resultado, sufixo))
     except Exception as e:
         return render_template('index.html', erro=f'Insira uma data válida')
 
